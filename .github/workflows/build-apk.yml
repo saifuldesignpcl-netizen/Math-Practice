@@ -21,8 +21,12 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Android folder generate
-        run: flutter create . --platforms=android --project-name math_practice
+      - name: Android folder generate (lib safe rakhe)
+        run: |
+          cp -r lib /tmp/lib_backup
+          flutter create . --platforms=android --project-name math_practice
+          rm -rf lib
+          cp -r /tmp/lib_backup lib
 
       - run: flutter pub get
 
